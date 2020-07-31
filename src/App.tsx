@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Box } from '@material-ui/core';
 import { getQuiz } from './services/QuizService';
 import { QuestionCard } from './components/QuestionCard';
 import { QuizType } from './types/QuizTypes';
+import QuizImg from './quizImg.png'
 
 function App() {
   const [quiz, setQuiz] = useState<QuizType[]>([]);
+  const [loading, setLoading] = useState(false);
   let [currentStep, setCurrentStep] = useState(0);
   let [score, setScore] = useState(0);
 
@@ -15,7 +18,6 @@ function App() {
     }
     fetchData();
   }, []);
-
   const handleSubmit = (e: React.FormEvent<EventTarget>, userAns: string) => {
     e.preventDefault();
     const questionSelection: QuizType = quiz[currentStep];
@@ -32,8 +34,39 @@ function App() {
     }
   };
 
-  if (!quiz.length) {
-    return <h1>loadinng</h1>;
+  if (!loading) {
+    return (
+      <Box style={{
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundImage:`url(${QuizImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+        }}>
+        <Button
+         variant='outlined'
+        color="secondary"
+          style={{
+            height:'50px',
+            width:'150px',
+            fontSize:'40px',
+            fontWeight:'bold',
+            fontFamily:'lobster',
+            // color:'#00f7ff',
+            // backgroundColor:'#ff00fb',
+            // marginTop:'380px',
+            // marginRight:'10px'
+            
+          }}
+          onClick={() => setLoading(true)}
+        >
+          Start
+        </Button>
+      </Box>
+    );
   }
   return (
     <div>

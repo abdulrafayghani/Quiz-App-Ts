@@ -34,7 +34,7 @@ function App() {
     }
   };
 
-  if (!loading) {
+  if (!quiz.length || !loading) {
     return (
       <Box style={{
         height: '100vh',
@@ -48,14 +48,15 @@ function App() {
         }}>
         <Button
          variant='outlined'
-        color="secondary"
+        // color="secondary"
           style={{
             height:'50px',
             width:'150px',
             fontSize:'40px',
             fontWeight:'bold',
             fontFamily:'lobster',
-            // color:'#00f7ff',
+            borderColor:'#00f7ff',
+            color:'#f200ca',
             // backgroundColor:'#ff00fb',
             // marginTop:'380px',
             // marginRight:'10px'
